@@ -107,12 +107,19 @@ done
 	Berdasarkan source code diatas, diinisialisasi variabel i=1 dan variabel no=1, kemudian dimana i != 0 maka jika misal pada folder hasilno3 terdapat password1.txt kemudian akan meng create password.txt baru dengan format $no + 1, maka jika password1.txt sudah ada maka akan create password2.txt. Tetapi jika password 1 tidak ada maka buat password baru diambil dari urandom abjad a-z atau 0-9 atau huruf besar dan kecil, dimana hanya satu baris saja yang diambil dan tidak boleh lebih dari 12 karakter, kemudian password tersebut disimpan di folder hasilno3. Kemudian iterasi i=0 adalah untuk menghetikan looping agar tidak terus menerus berjalan. 
 
  Penjelasan :
+
 ``i=1`` : diinisialisasi variabel bernama i bernilai 1
+
 ``no=1`` : diinisialisasi variabel bernama no bernilai 1
+
 ``while [ $i -ne 0 ]`` : jika nilai i != 0, maka lakukan perintah yang diperintahkan
+
 ``if [[ -f /home/putri/sisop/hasilno3/password$no.txt ]]; then`` : jika ditemukan file pada folder hasilno3 bernama password1.txt, maka
- ``no=$((no + 1))`` : maka nilai variabel no akan bertambah satu yaitu menjadi 2
- ``cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1 > /home/putri/sisop/hasilno3/password$no.txt`` : tetapi jika tidak, maka mencari dari urandom karakter dari a-z huruf kecil A-Z huruf besar dan angka 0-9, ambil 12 karakter saja, baris paling pertama dan hasilnya disimpan di file password.txt.
+
+``no=$((no + 1))`` : maka nilai variabel no akan bertambah satu yaitu menjadi 2
+
+``cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1 > /home/putri/sisop/hasilno3/password$no.txt`` : tetapi jika tidak, maka mencari dari urandom karakter dari a-z huruf kecil A-Z huruf besar dan angka 0-9, ambil 12 karakter saja, baris paling pertama dan hasilnya disimpan di file password.txt.
+
 ``i=0`` : mengembalikan agar perulangan berhenti.
 
 ## Soal 4

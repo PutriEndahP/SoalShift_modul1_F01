@@ -29,6 +29,19 @@ Crontab : 14 14 14 2 * /bin/bash /home/putri/sisop/soal1.sh
 
 	Agar program dapat berjalan sesuai dengan perintah soal, maka diberikan crontab pada bash cript tersebut. Crontab pertama yaitu semua file dapat terbuka pada pukul 14:14 pada tanggal 14 Februari. Dan crontab kedua yaitu semua file dapat terbuka pada hari Jumat pada bulan Februari.
 
+ Penjelasan : 
+
+``unzip /home/putri/sisop/nature.zip -d /home/putri/sisop`` : untuk meng-unzip file nature.zip dan kemudian di simpan ke folder sisop.
+
+``mkdir /home/putri/sisop/nature_gambar`` : membuat folder baru untuk menyimpan file gambar yang sudah bisa terbuka dengan nama nature_gambar.
+
+``i="1"`` : inisialisasi variabel i bernilai 1.
+
+``for var in /home/putri/sisop/nature/*.jpg`` : menunjukkan untuk semua file jpg pada folder nature dimasukkan variabel bernama var.
+
+``base64 -d $var`` : untuk mendrekipsikan file.
+``xxd –r`` : untuk mereverse hexdump.
+
 ## Soal 2
 Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa :
 

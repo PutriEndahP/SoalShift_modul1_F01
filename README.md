@@ -119,6 +119,57 @@ d.	Backup file syslog setiap jam.
 
 e.	dan buatkan juga bash script untuk dekripsinya.
 
+	Langkah pertama, buatlah file nano soal4a.sh dan nano soal4b.sh. Soal4a merupakan soal yang meminta kita untuk melakukan enkripsi, sedangkan soal4b meminta kita untuk malakukan dekripsinya. 
+
+	Buat file soal4a.sh terlebih dahulu yang berisi source code berikut :
+
+```javascript
+#!/bin/bash
+
+#mengambil jam dijalankannya command
+waktu=`date "+%X" | awk -F: '{print $1}'`
+#mengkonversikan string menjadi int
+waktu=`echo "$waktu" | bc`
+
+#batas bawah (a jadi apa) huruf kecil
+kecila=$(($waktu+97)) 
+kecila=$(printf \\$(printf '%03o' $kecila)) #untuk mengkonversi dari asci ke angka
+#batas atas huruf kecil
+kecilb=$(printf '%d' "'$kecila")
+kecilb=$(($kecilb-1))
+if [ $kecilb -lt 97 ]
+then
+    kecilb=122
+fi
+kecilb=$(printf \\$(printf '%03o' $kecilb))
+
+#batas bawah (A jadi apa) huruf besar
+besara=$(($waktu+65))
+besara=$(printf \\$(printf '%03o' $besara)) #mengkonversi asci ke angka biasa
+#batas atas huruf besar
+besarb=$(printf '%d' "'$besara")
+besarb=$(($besarb-1))
+if [ $besarb -lt 65 ]
+then
+    besarb=90
+fi
+besarb=$(printf \\$(printf '%03o' $besarb))
+
+jam=`date "+%X" | awk -F: '{print $1}'`
+menit=`date "+%X" | awk -F: '{print $2}'`
+tanggal=`date | awk '{print $3}'`
+bulan=`date | awk '{print $2}'`
+tahun=`date | awk '{print $6}'`
+
+#and tinggal di shift dan save
+cat /var/log/syslog | tr [a-z] ["$kecila"-za-"$kecilb"] | tr [A-Z] ["$besara"-ZA-"$besarb"] > "$jam:$menit $tanggal-$bulan-$tahun".txt
+```
+	Yang pertama dilakukan adalah mengambil waktu pada command line yang formatnya yaitu jam, menit,detik. Print kolom pertama, karena kita hanya membutuhkan jam nya saja. Kemudian konversikan jam tersebut yang masih berupa string menjadi integer. Kemudian tentukan batas bawah dan batas atasnya untuk huruf kecil terlebih dahulu. Dengan cara misalkan a yaitu asci nya 97 dengan menambahkan dengan jam sekarang, lalu konversikan asci tersebut menjadi angka. Kemudian untuk batas bawahnya dengan batas atas dikurangi 1, jika batas atas huruf kecil < 97 (yaitu a kecil) maka batas atas menjadi z atau kembali lagi ke z (asci 122). Kemudian di conversikan lagi dari asci ke angka biasa, kemudian di print.
+
+	Untuk mengambil batas atas dan bawah huruf besarnya masih sama dengan yang huru kecil. Kemudian print jam, menit, tanggal, bulan , dan tahun sesuai dengan format.
+
+	Yang terakhir buka file /var/log/syslog dan fungsi tr yaitu fungsi untuk mengubah karakter satu ke karakter yang lainnya. Dari batas atas huruf kecil-z, a-batas bawah huruf kecil dan dari batas atas huruf besar-Z, A-batas bawah huruf besar. Selanjutnya di simpan dalam file .txt
+
 ## Soal 5
 Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 

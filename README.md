@@ -1,5 +1,8 @@
 # SoalShift_modul1_F01
 
+1. Putri Endah Puspitasari (05111740000039)
+2. Garda Negara Wisnumurti (05111740000153)
+
 ## Soal 1
 Anda diminta tolong oleh teman anda untuk mengembalikan filenya yang telah dienkripsi oleh seseorang menggunakan bash script, file yang dimaksud adalah nature.zip. Karena terlalu mudah kalian memberikan syarat akan membuka seluruh file tersebut jika pukul 14:14 pada tanggal 14 Februari atau hari tersebut adalah hari jumat pada bulan Februari. (Hint: Base64, Hexdump)
 
@@ -269,3 +272,8 @@ awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13' >> /home/putri/mo
 Crontab : 2-30/6 * * * * /bin/bash /home/putri/sisop/soal5.sh
 ```
 	Berdasarkan source code diatas, menggunakan awk yaitu mencari kata cron yang dengan huruf kecil atau CRON menggunakan huruf besar tetapi kata yang tidak mengandung string sudo pada file /var/log/syslog tersebut dan number field nya dibatasi tidak boleh lebih dari 13 field/kolom. Kemudian record tadi di simpan ke dalam folder bernama modul1 dan dalam bentuk file .log. Agar script tersebut berjalan sesuai perintah soal, maka tambahkan crontab yaitu script akan berjalan setiap 6 menit pada menit ke 2-30. 
+
+ Penjelasan :
+``awk '/cron/ || /CRON/,!/sudo/'`` : script awk untuk mencari string cron, CRON tetapi tidak string sudo.
+``| awk 'NF < 13'`` : script agar Number Field yang diambil tidak kurang dari 13.
+``>> /home/putri/modul1/nomor5.log`` : hasilnya disimpan di folder modul1 dan file bernama nomor5.log.

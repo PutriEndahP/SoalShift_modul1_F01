@@ -226,6 +226,13 @@ cat "$jam:$menit $tanggal-$bulan-$tahun".txt | tr [a-z] ["$kecila"-za-"$kecilb"]
 ```
 	Pada proses dekrip sendiri sama dengan proses enkripsi hanya saja tinggal dikembalikan lagi seperti semula, yang awalnya ditambah dengan jam pada proses ini dikurang dengan jam. 
 
+ Agar program berjalan sesuai dengan perintah soal yaitu setiap satu jam sekali, maka di tambahkan crontab agar bisa berjalan satu jam sekali yaitu :
+
+```javascript
+@hourly /bin/bash /home/putri/sisop/soal4a.sh
+```
+ Karena yang diminta berjalan setiap satu jam sekali hanyalah script untuk enkripsi saja, maka crontab tersebut diberikan untuk soal41.sh 
+
 ## Soal 5
 Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 

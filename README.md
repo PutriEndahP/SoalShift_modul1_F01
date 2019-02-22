@@ -92,3 +92,37 @@ fi
 done
 ```
 	Berdasarkan source code diatas, diinisialisasi variabel i=1 dan variabel no=1, kemudian dimana i != 0 maka jika misal pada folder hasilno3 terdapat password1.txt kemudian akan meng create password.txt baru dengan format $no + 1, maka jika password1.txt sudah ada maka akan create password2.txt. Tetapi jika password 1 tidak ada maka buat password baru diambil dari urandom abjad a-z atau 0-9 atau huruf besar dan kecil, dimana hanya satu baris saja yang diambil dan tidak boleh lebih dari 12 karakter, kemudian password tersebut disimpan di folder hasilno3. Kemudian iterasi i=0 adalah untuk menghetikan looping agar tidak terus menerus berjalan. 
+
+## Soal 4
+Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal-bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai berikut:
+
+a.	Huruf b adalah alfabet kedua, sedangkan saat ini waktu menunjukkan pukul 12, sehingga huruf b diganti dengan huruf alfabet yang memiliki urutan ke 12+2 = 14.
+
+b.	Hasilnya huruf b menjadi huruf n karena huruf n adalah huruf ke empat belas, dan seterusnya.
+
+c.	setelah huruf z akan kembali ke huruf a
+
+d.	Backup file syslog setiap jam.
+
+e.	dan buatkan juga bash script untuk dekripsinya.
+
+## Soal 5
+Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
+
+a.	Tidak mengandung string “sudo”, tetapi mengandung string “cron”, serta buatlah pencarian stringnya tidak bersifat case sensitive, sehingga huruf kapital atau tidak, tidak menjadi masalah.
+
+b.	Jumlah field (number of field) pada baris tersebut berjumlah kurang dari 13.
+
+c.	Masukkan record tadi ke dalam file logs yang berada pada direktori /home/[user]/modul1.
+
+d.	Jalankan script tadi setiap 6 menit dari menit ke 2 hingga 30, contoh 13:02, 13:08, 13:14, dst.
+
+	Untuk lebih memahami, terlebih dulu membuka folder /var/log kemudian cat syslog. Dialam file tersebut terdapat banyak sekali record dan juga field yang terdapat banyak sekali kata dan character di dalamnya. Kemudian buatlah file nano soal5.sh yang berisi source code dibawah ini :
+
+```javascript
+awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13' >> /home/putri/modul1/nomor5.log
+```
+```
+Crontab : 2-30/6 * * * * /bin/bash /home/putri/sisop/soal5.sh
+```
+	Berdasarkan source code diatas, menggunakan awk yaitu mencari kata cron yang dengan huruf kecil atau CRON menggunakan huruf besar tetapi kata yang tidak mengandung string sudo pada file /var/log/syslog tersebut dan number field nya dibatasi tidak boleh lebih dari 13 field/kolom. Kemudian record tadi di simpan ke dalam folder bernama modul1 dan dalam bentuk file .log. Agar script tersebut berjalan sesuai perintah soal, maka tambahkan crontab yaitu script akan berjalan setiap 6 menit pada menit ke 2-30. 

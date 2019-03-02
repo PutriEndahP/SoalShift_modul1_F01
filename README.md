@@ -45,6 +45,37 @@ Crontab : 14 14 14 2 * /bin/bash /home/putri/sisop/soal1.sh
 ``base64 -d $var`` : untuk mendrekipsikan file.
 ``xxd –r`` : untuk mereverse hexdump.
 
+![1](/img/1.png)
+
+*Source code untuk soal nomor 1*
+
+
+![1.1](/img/1.1.png)
+
+*Setelah program pada file nomor1.sh di bash*
+
+
+![1.2](/img/1.2.png)
+
+![1.3](/img/1.3.png)
+
+*Di folder soal1 akan ada folder nature yang sudah ter unzip dan folder nature_gambar*
+
+
+![1.4](/img/1.4.png)
+
+*Folder nature yang berisi file yang belum terbuka*
+
+
+![1.5](/img/1.5.png)
+
+*Folder nature_gambar yang berisi gambar yang sudah dibuka*
+
+
+![1.6](/img/1.6.png)
+
+*Crontab untuk nomor 1*
+
 ## Soal 2
 Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa :
 
@@ -78,6 +109,20 @@ awk -F ',' '{if($7=='2012' && $1=="United States" && $4=="Outdoor Protection") p
 	Point b : Diminta untuk menunjukkan tiga product line yang memberikan penjualan(quantity) terbanyak pada soal poin a. Berdasarkan source code diatas, cari product line pada tahun ‘2012’ dan negara atau kolom 1 menunjukkan ‘United States’. Kemudian kelompokkan quantity berdasarkan product line nya yang disimpan di variabel p. Kemudian isi dari variabel p di simpan ke variabel hasil. Print variabel p[hasil] yang akan menghasilkan kolom quantity dan hasil yang merupakan nama dari product line tersebut yang terdiri dadi 2 kolom. Kemudian di sort dan diambil number row yang 3 teratas lalu print kolom 2 dan 3 yang merupakan kolom nama product line tersebut.
 
 	Point c : Diminta untuk menunjukkan tiga product yang memberikan penjualan(quantity) terbanyak berdasarkan tiga product line yang didapatkan pada soal poin b. Cara membuat source code nya sama dengan point b, hanya saja pada point c ini di sendiri2 kan per product line nya.
+
+![2.1](/img/2.1.png)
+
+![2.2](/img/2.2.png)
+
+![2.3](/img/2.3.png)
+
+*Ketiga gambar diatas merupakan source code untuk jawaban nomor 2*
+
+Untuk nomor 2c ada revisi yaitu yang awalnya kita mencarinya satu per satu per product line tapi ternyata yang diminta tidak demikian, sehingga kami melakukan revisi yaitu source code yang salah kami komen dengan menggunakan tanda pagar (#) sedangkan source yang benar ada di bawahnya.
+
+![2.4](/img/2.4.png)
+
+*Jawaban dari program soal 2 setelah di run*
 
 ## Soal 3
 Buatlah sebuah script bash yang dapat menghasilkan password secara acak sebanyak 12 karakter yang terdapat huruf besar, huruf kecil, dan angka. Password acak tersebut disimpan pada file berekstensi .txt dengan ketentuan pemberian nama sebagai berikut :
@@ -124,6 +169,18 @@ done
 ``cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1 > /home/putri/sisop/hasilno3/password$no.txt`` : tetapi jika tidak, maka mencari dari urandom karakter dari a-z huruf kecil A-Z huruf besar dan angka 0-9, ambil 12 karakter saja, baris paling pertama dan hasilnya disimpan di file password.txt.
 
 ``i=0`` : mengembalikan agar perulangan berhenti.
+
+![3.1](/img/3.1.png)
+
+*Source code program soal 3*
+
+![3.2](/img/3.2.png)
+
+*Setelah soal 3 di bash maka akan terbuat folder hasilno3 yang berisi passoword-password*
+
+![3.3](/img/3.3.png)
+
+*Setelah di buka file password nya maka akan tampil sebaris password dengan 12 karakter seperti gambar diatas*
 
 ## Soal 4
 Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal-bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai berikut:
@@ -189,6 +246,16 @@ cat /var/log/syslog | tr [a-z] ["$kecila"-za-"$kecilb"] | tr [A-Z] ["$besara"-ZA
 
 	Yang terakhir buka file /var/log/syslog dan fungsi tr yaitu fungsi untuk mengubah karakter satu ke karakter yang lainnya. Dari batas atas huruf kecil-z, a-batas bawah huruf kecil dan dari batas atas huruf besar-Z, A-batas bawah huruf besar. Selanjutnya di simpan dalam file .txt
 
+![4.1](/img/4.1.png)
+
+![4.2](/img/4.2.png)
+
+*Source code program soal 4a*
+
+![4.3](/img/4.3.png)
+
+*Crontab untuk nomor 4a*
+
 	Kemudian pada file soal4b.sh yang berisi source code berikut ini :
 
 ```javascript
@@ -252,6 +319,36 @@ cat "$jam:$menit $tanggal-$bulan-$tahun".txt | tr [a-z] ["$kecila"-za-"$kecilb"]
 ```
  Karena yang diminta berjalan setiap satu jam sekali hanyalah script untuk enkripsi saja, maka crontab tersebut diberikan untuk soal41.sh 
 
+![4.4](/img/4.4.png)
+
+![4.5](/img/4.5.png)
+
+![4.6](/img/4.6.png)
+
+*Source code program soal 4b*
+
+![4.7](/img/4.7.png)
+
+*Setelah nomor 4a di run maka akan terbuat file .txt seperti pada gambar*
+
+![4.8](/img/4.8.png)
+
+![4.9](/img/4.9.png)
+
+*Isi dari file hasil running nomor 4a*
+
+![4.10](/img/4.10.png)
+
+![4.11](/img/4.11.png)
+
+*Setelah program soal4b di bash*
+
+![4.12](/img/4.12.png)
+
+![4.13](/img/4.13.png)
+
+*Hasil dari isi file nomor 4b yang telah di running*
+
 ## Soal 5
 Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 
@@ -280,3 +377,19 @@ Crontab : 2-30/6 * * * * /bin/bash /home/putri/sisop/soal5.sh
 ``| awk 'NF < 13'`` : script agar Number Field yang diambil tidak kurang dari 13.
 
 ``>> /home/putri/modul1/nomor5.log`` : hasilnya disimpan di folder modul1 dan file bernama nomor5.log.
+
+![5.1](/img/5.1.png)
+
+*Source code program untuk soal nomor 5*
+
+![5.2](/img/5.2.png)
+
+*Setelah di bash maka akan terbut file .log*
+
+![5.3](/img/5.3.png)
+
+*Hasil atau isi dari file nomor5.log*
+
+![5.4](/img/5.4.png)
+
+*Crontab untuk nomor 5*
